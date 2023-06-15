@@ -7,7 +7,19 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     card: {
         maxWidth: 400,
-        marginTop: 20 // Set the desired max-width value here
+        marginTop: 20,
+        marginLeft: 10,
+        border: "2px solid black"// Set the desired max-width value here
+    },
+    cardMedia: {
+        objectFit: 'contain',
+        width: '100%' // Fix the image width to 100%
+    },
+    cardContent: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        color: 'white'
     },
 });
 
@@ -20,16 +32,16 @@ export default function MultiActionAreaCard() {
         <Card className={classes.card}>
             <CardActionArea>
 
-                <CardMedia
+                <CardMedia className='cardMedia'
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
+                    image="https://source.unsplash.com/random/30×30/?pasta                    "
+                    alt="pasta"
                 />
 
-                <CardContent>
+                <CardContent className='cardContent'>
                     <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        Pasta
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Lizards are a widespread group of squamate reptiles, with over 6,000
