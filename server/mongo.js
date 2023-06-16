@@ -13,18 +13,20 @@ const connectToDatabase = async () => {
 };
 
 const FoodCategorySchema = new mongoose.Schema({
-  name: String,
-  description: String,
+  CategoryName: String
 });
 
 const FoodItemSchema = new mongoose.Schema({
+  CategoryName: String,
   name: String,
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'FoodCategory',
-  },
-  price: Number,
+  img: String,
+  options: [{
+    half: String,
+    full: String
+  }],
+  description: String
 });
+
 
 const FoodCategory = mongoose.model('FoodCategory', FoodCategorySchema);
 const FoodItem = mongoose.model('FoodItem', FoodItemSchema);
