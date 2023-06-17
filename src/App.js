@@ -1,27 +1,21 @@
-
-import Navbar from './components/Navbar';
-import Card from './components/Card';
-import Carousel from './components/Carousel'
-
+import React from 'react';
+import {  Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 function App() {
-
   return (
-    <>
-      <div>
-        <Navbar />
-      </div>
-      <div>
-        <Carousel/>
-      </div>
-      <div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </>
+    
+     <>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
 
+        </>
+    
   );
 }
 
