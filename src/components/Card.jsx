@@ -24,9 +24,14 @@ const useStyles = makeStyles({
 });
 
 
-export default function MultiActionAreaCard() {
+export default function MultiActionAreaCard(props) {
+    
 
     const classes = useStyles();
+
+    const options = props.options;
+    const priceOptions = options ? Object.keys(options) : [];
+    console.log(priceOptions);
 
     return (
         <Card className={classes.card}>
@@ -35,17 +40,16 @@ export default function MultiActionAreaCard() {
                 <CardMedia className='cardMedia'
                     component="img"
                     height="140"
-                    image="https://source.unsplash.com/random/30×30/?pasta                    "
+                    image={props.imgSrc}
                     alt="pasta"
                 />
 
                 <CardContent className='cardContent'>
                     <Typography gutterBottom variant="h5" component="div">
-                        Pasta
+                        {props.foodName}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {props.description}
                     </Typography>
                 </CardContent>
 
@@ -58,9 +62,13 @@ export default function MultiActionAreaCard() {
                         })
                     }
                 </Select>
-                <Select>
-                    <MenuItem value={1}>Half</MenuItem>
-                    <MenuItem value={2}>Full</MenuItem>
+                <Select className='m-2 h-100 bg-success rounded'>
+                  {
+                    priceOptions.map((data) => {
+                        return <MenuItem value={data} key={data}>{data}</MenuItem>
+                    })
+                  }
+                  
                 </Select>
                 <div>
                     Total Price

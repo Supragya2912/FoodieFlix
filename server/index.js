@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = 5000;
 const { connectToDatabase, FoodCategory, FoodItem } = require('./mongo');
 const cors = require('cors');
 
@@ -15,6 +15,7 @@ app.use(cors(
 
 app.use(express.json());
 app.use('/foodie',require('./routes/user_routes'));
+app.use('/foodie',require('./routes/food_routes'));
 
 app.get('/', (req, res) => res.send('Helloo World!'));
 
