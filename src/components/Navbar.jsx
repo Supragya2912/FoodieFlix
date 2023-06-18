@@ -4,8 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
+
   title: {
     flexGrow: 1,
+    fontFamily: 'Montserrat, sans-serif',
   },
 }));
 
@@ -16,10 +18,15 @@ const Navbar = () => {
 
   const handleSignUpClick = () => {
     navigate('/signup');
+    console.log("signup");
+  };
+  const handleLogin = () => {
+    navigate('/login');
+    console.log("login");
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{backgroundColor: '#ffb300', color: 'black'}}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           FoodieFlix
@@ -31,7 +38,7 @@ const Navbar = () => {
         <Button color="inherit" onClick={handleSignUpClick}>
           SignUp
         </Button>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={handleLogin}>Login</Button>
       </Toolbar>
     </AppBar>
   );

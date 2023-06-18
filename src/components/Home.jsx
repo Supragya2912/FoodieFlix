@@ -105,7 +105,7 @@ const Home = () => {
                                 <div className='row mb-3'>
                                     <div key={data._id} className="fs-3 m-3">
                                         {data.CategoryName}
-                                    </div>
+                                    </div>  
                                     <hr />
                                     {
                                         foodItem.filter((item) => item.CategoryName === data.CategoryName && item.name.toLowerCase().includes(search.toLowerCase()))

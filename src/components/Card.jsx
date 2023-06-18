@@ -65,7 +65,7 @@ export default function MultiActionAreaCard(props) {
                 <Select className='m-2 h-100 bg-success rounded'>
                   {
                     priceOptions.map((data) => {
-                        return <MenuItem value={data} key={data}>{data}</MenuItem>
+                        return <option value={data} key={data}>{data}</option>
                     })
                   }
                   
