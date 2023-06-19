@@ -36,7 +36,7 @@ router.post('/createUser',
             res.json({ message: "User created successfully" });
         } catch (err) {
             res.send('Error ' + err);
-            res.json({ message: "User not created" });
+            // res.json({ message: "User not created" });
         }
     }
 );

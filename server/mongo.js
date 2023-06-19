@@ -1,15 +1,31 @@
 const mongoose = require('mongoose');
 
-const connectToDatabase = async () => {
-  try {
-    await mongoose.connect('mongodb://localhost/foodieflix', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+// Connection URL
+const url = 'mongodb://localhost:27017/foodieflix';
+
+// Connect to the MongoDB server
+const connectToDatabase = () => {
+  mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+  // Connection events
+  mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
+  });
+
+  mongoose.connection.on('error', (err) => {
+    console.error('MongoDB connection error:', err);
+  });
+
+  mongoose.connection.on('disconnected', () => {
+    console.log('Disconnected from MongoDB');
+  });
+
+  process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+      console.log('MongoDB connection closed');
+      process.exit(0);
+    });
+  });
 };
 
 const FoodCategorySchema = new mongoose.Schema({
@@ -27,7 +43,6 @@ const FoodItemSchema = new mongoose.Schema({
   description: String
 });
 
-
 const FoodCategory = mongoose.model('FoodCategory', FoodCategorySchema);
 const FoodItem = mongoose.model('FoodItem', FoodItemSchema);
 
@@ -39,19 +54,17 @@ const fetchDataAndLog = async () => {
     const foodItems = await FoodItem.find();
     const foodCategories = await FoodCategory.find();
 
-   //creating a global variable to store the fetched data
+    // Creating a global variable to store the fetched data
     global.foodItems = foodItems;
     global.foodCategories = foodCategories;
     // console.log(global.foodItems);
-
-    // Close the MongoDB connection
-    mongoose.connection.close();
+    // console.log(global.foodCategories);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 
-// Call the function to fetch and log the data
+// Call the fetchDataAndLog function to fetch data when the server starts
 fetchDataAndLog();
 
 module.exports = {
