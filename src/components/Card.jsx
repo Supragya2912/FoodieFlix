@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CardMedia from '@mui/material/CardMedia';
-import { Card, CardContent, Typography, Select, MenuItem } from '@material-ui/core';
+import { Card, CardContent, Typography, Select, MenuItem, Button } from '@material-ui/core';
 import { CardActionArea, CardActions } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 
 export default function MultiActionAreaCard(props) {
-    
+
 
     const classes = useStyles();
 
@@ -54,26 +54,35 @@ export default function MultiActionAreaCard(props) {
                 </CardContent>
 
             </CardActionArea>
-            <CardActions>
-                <Select>
-                    {
-                        Array.from(Array(5).keys()).map((value) => {
-                            return <MenuItem value={value + 1}>{value + 1}</MenuItem>
-                        })
-                    }
-                </Select>
-                <Select className='m-2 h-100 bg-success rounded'>
-                  {
-                    priceOptions.map((data) => {
-                        return <option value={data} key={data}>{data}</option>
-                    })
-                  }
-                  
-                </Select>
-                <div>
-                    Total Price
-                </div>
-            </CardActions>
+ 
+
+<CardActions className={classes.cardActions}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+    <div style={{ marginBottom: '10px' }}>
+      <Select>
+        {Array.from(Array(5).keys()).map((value) => (
+          <MenuItem value={value + 1} key={value + 1}>
+            {value + 1}
+          </MenuItem>
+        ))}
+      </Select>
+      <Select className='m-2 h-100 rounded'>
+        {priceOptions.map((data) => (
+          <option value={data} key={data}>
+            {data}
+          </option>
+        ))}
+      </Select>
+    </div>
+    <div style={{ marginBottom: '10px' }}>
+      Total Price
+    </div>
+    <hr />
+    <div>
+      <Button style={{backgroundColor: '#ffd54f', color: 'black'}} variant="contained" color="primary">Add to Cart</Button>
+    </div>
+  </div>
+</CardActions>
 
         </Card>
     );
