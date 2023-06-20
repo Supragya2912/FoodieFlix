@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   let navigate = useNavigate();
 
@@ -27,12 +28,16 @@ const Login = () => {
     }
     if (json.success) {
       alert('You are logged in successfully');
-      setCredentials({ email: '', password: '' });
       navigate('/');
+      localStorage.setItem('userEmail',credentials.email)
       localStorage.setItem('authToken', json.authToken);
-      console.log(json.authToken);
+      setCredentials({ email: '', password: '' });
+      console.log('Auth Token',json.authToken);
+      console.log('Email',credentials.email);
     }
   };
+
+  
 
   const onChangeHandler = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });

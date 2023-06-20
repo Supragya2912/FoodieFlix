@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import Card from './Card';
+import MultiActionCard from './Card';
 
 const Home = () => {
 
@@ -113,11 +113,12 @@ const Home = () => {
                                                 filterItems => {
                                                     return (
                                                         <div key={filterItems._id} className="col-12 col-md-6 col-lg-3">
-                                                            <Card
-                                                                foodName={filterItems.name}
+                                                            <MultiActionCard
+                                                                foodItem = {filterItems}
+                                                                // foodName={filterItems.name}
                                                                 options={filterItems.options[0]}
-                                                                imgSrc={filterItems.img}
-                                                                description={filterItems.description}
+                                                                // imgSrc={filterItems.img}
+                                                                // description={filterItems.description}
                                                             />
                                                         </div>
                                                     )
@@ -130,7 +131,7 @@ const Home = () => {
                             )
                         }) : null
                 }
-                <Card />
+             
             </div>
         </>
     )

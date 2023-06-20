@@ -1,7 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Badge from 'react-bootstrap/Badge'
 import { Link, useNavigate } from 'react-router-dom';
+import Cart from './Cart';
+import Modal from './Modal';
+import {useCart} from './ContextReducer'
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Navbar = () => {
+
   const classes = useStyles();
   const navigate = useNavigate();
+  const [cartView, setCartView] = useState(false);
+  let data = useCart();
 
   const handleSignUpClick = () => {
     navigate('/signup');
@@ -74,8 +81,11 @@ const Navbar = () => {
           </Button>
         </div>
         :
-         <div className={classes.menuButtonsRight}>
+         <div className={classes.menuButtonsRight} onClick={()=>setCartView(true)}>
           <Button color="inherit">Cart</Button>
+          <Badge pill bg="danger">{data.length}</Badge>
+          {cartView ? <Modal onClose={(e) => {e.stopPropagation();setCartView(false)} }><Cart></Cart></Modal> : ""}
+
           <Button color="inherit" onClick={handleLogout}>LogOut</Button>
          </div>
         }
