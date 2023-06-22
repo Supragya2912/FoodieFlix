@@ -18,6 +18,7 @@ app.use('/foodie',require('./routes/user_routes'));
 app.use('/foodie',require('./routes/food_routes'));
 app.use('/foodie',require('./routes/displayData'));
 app.use('/foodie',require('./routes/orderData'));
+app.use('/foodie',require('./routes/orderData'));
 
 app.get('/', (req, res) => res.send('Helloo World!'));
 

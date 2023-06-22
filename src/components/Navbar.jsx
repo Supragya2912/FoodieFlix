@@ -48,6 +48,9 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const handleOrder = () =>{
+    navigate('/myorderData');
+  }
 
   console.log('Front -end',localStorage.getItem('authToken'));
   return (
@@ -66,7 +69,7 @@ const Navbar = () => {
 
           { 
               (localStorage.getItem('authToken')) ? 
-              <Button color="inherit">Orders</Button>: ""
+              <Button color="inherit" onClick={handleOrder}>Orders</Button>: ""
           }
          
         </div>
